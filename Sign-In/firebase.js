@@ -14,6 +14,18 @@ firebase.initializeApp(firebaseConfig);
 
  //invokes firebase authentication.
  const auth = firebase.auth();
+ 
+ window.onload = function() {
+  const auth = firebase.auth();
+
+  auth.signOut().then(() => {
+    // Sign-out successful.
+    console.log('User signed out on page load.');
+  }).catch((error) => {
+    // An error happened.
+    console.error('Error signing out:', error);
+  });
+};
 
  document.querySelector("#show-register").addEventListener("click", () => {
    showRegistration();
@@ -116,7 +128,7 @@ firebase.initializeApp(firebaseConfig);
        // Handle Errors here.
        var errorCode = error.code;
        var errorMessage = error.message;
-       alert(errorMessage);
+       alert("Username or Password Incorrect. Please try again later.");
      });
  };
 
@@ -141,6 +153,7 @@ firebase.initializeApp(firebaseConfig);
  auth.onAuthStateChanged((firebaseUser) => {
    if (firebaseUser) {
      showHomepage();
+     //window.location.href = 'https://theuselessweb.com/'; // Replace with the appropriate URL
    }
  });
 
