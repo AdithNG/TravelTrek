@@ -222,6 +222,7 @@ sendButton.addEventListener('click', () => {
   messageHistory.appendChild(computerMessageElement);
 });
 
+
 function generateComputerResponse(userMessage) {
   // Replace this with your actual logic for generating computer responses
   // This is just a simple example
