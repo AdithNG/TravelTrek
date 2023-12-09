@@ -64,3 +64,45 @@ body{
   #forgot-password:hover {
     opacity: 0.7;
   } 
+
+  .chat-container {
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+  
+  .chat-header {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .message-history {
+    height: 400px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+  }
+  
+  .chat-input {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #chat-input-field {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+  }
+  
+  #send-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+  }

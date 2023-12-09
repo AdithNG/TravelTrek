@@ -152,9 +152,26 @@ firebase.initializeApp(firebaseConfig);
 
  auth.onAuthStateChanged((firebaseUser) => {
    if (firebaseUser) {
-     showHomepage();
-     //window.location.href = 'https://theuselessweb.com/'; // Replace with the appropriate URL
-   }
+     // User is logged in, remove "hide" class
+     document.querySelector("#login-page").classList.add("hide");
+     document.querySelector('.chat-container').classList.remove('hide');
+     window.addEventListener('beforeunload', () => {
+      // Log out the user when the window closes
+      firebase.auth().signOut()
+      .then(() => {
+        // Clear any local storage or cookies related to user authentication
+        localStorage.clear();
+        cookies.remove('user_token');
+      })
+      .catch((error) => {
+        // Handle any errors during logout
+        console.error(error);
+      });
+    });
+   } else {
+    // User is not logged in, add "hide" class if needed
+    document.querySelector('.chat-container').classList.add('hide');
+  }
  });
 
  document
@@ -178,3 +195,35 @@ firebase.initializeApp(firebaseConfig);
        alert("invalid email or bad network connection");
      });
  };
+
+ const messageHistory = document.querySelector('.message-history');
+const inputField = document.getElementById('chat-input-field');
+const sendButton = document.getElementById('send-button');
+
+sendButton.addEventListener('click', () => {
+  const userMessage = inputField.value;
+
+  // Display user message
+  const userMessageElement = document.createElement('div');
+  userMessageElement.classList.add('message', 'user-message');
+  userMessageElement.innerText = `User: ${userMessage}`;
+  messageHistory.appendChild(userMessageElement);
+
+  // Clear input field
+  inputField.value = '';
+
+  // Generate computer response
+  const computerMessage = generateComputerResponse(userMessage);
+
+  // Display computer message
+  const computerMessageElement = document.createElement('div');
+  computerMessageElement.classList.add('message', 'computer-message');
+  computerMessageElement.innerText = `Computer: ${computerMessage}`;
+  messageHistory.appendChild(computerMessageElement);
+});
+
+function generateComputerResponse(userMessage) {
+  // Replace this with your actual logic for generating computer responses
+  // This is just a simple example
+  return `Hello! I received your message: ${userMessage}`;
+}

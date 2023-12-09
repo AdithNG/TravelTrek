@@ -22,7 +22,7 @@ const Navbar = () => {
         </ul>
 
         <div className="lg:flexCenter hidden">
-            <Link href="https://traveltrek-53a65.web.app/">
+            <Link href="https://traveltrek-53a65.firebaseapp.com/">
                 <Button 
                     type="button"
                     title="Login"
