@@ -196,7 +196,7 @@ firebase.initializeApp(firebaseConfig);
      });
  };
 
- const messageHistory = document.querySelector('.message-history');
+const messageHistory = document.querySelector('.message-history');
 const inputField = document.getElementById('chat-input-field');
 const sendButton = document.getElementById('send-button');
 

@@ -36,7 +36,7 @@ async function generateAndDisplayResponse(prompt) {
     chatHistoryElement.appendChild(chatbotResponseElement);
 }
 
-const messageInputField = document.getElementById('message-input-field');
+const messageInputField = document.querySelector('.message-history');
 const sendButton = document.getElementById('send-button');
 
 messageInputField.addEventListener('keyup', async (event) => {
