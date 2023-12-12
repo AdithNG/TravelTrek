@@ -35,6 +35,7 @@ firebase.initializeApp(firebaseConfig);
    document.querySelector("#registration-page").classList.remove("hide");
    document.querySelector("#login-page").classList.add("hide");
    document.querySelector("#homepage").classList.add("hide");
+   document.querySelector("#chat-container").classList.add("hide");
  };
 
  document.querySelector("#show-login").addEventListener("click", () => {
@@ -45,6 +46,7 @@ firebase.initializeApp(firebaseConfig);
    document.querySelector("#registration-page").classList.add("hide");
    document.querySelector("#login-page").classList.remove("hide");
    document.querySelector("#homepage").classList.add("hide");
+   document.querySelector("#chat-container").classList.add("hide");
  };
 
  document.querySelector("#signout").addEventListener("click", () => {
@@ -70,7 +72,6 @@ firebase.initializeApp(firebaseConfig);
          var errorCode = error.code;
          var errorMessage = error.message;
          alert(errorMessage);
-         // ...
        });
    }
  };
@@ -100,6 +101,7 @@ firebase.initializeApp(firebaseConfig);
      alert("Enter Password");
    } else {
      authenticate(email, password);
+     window.location.href = 'http://127.0.0.1:5000/';
    }
  };
 
@@ -135,7 +137,9 @@ firebase.initializeApp(firebaseConfig);
  const showHomepage = () => {
    document.querySelector("#registration-page").classList.add("hide");
    document.querySelector("#login-page").classList.add("hide");
-   document.querySelector("#homepage").classList.remove("hide");
+   document.querySelector("#homepage").classList.add("hide");
+   document.querySelector("#chat-container").classList.add("hide");
+
  };
 
  const signOut = () => {
@@ -154,7 +158,9 @@ firebase.initializeApp(firebaseConfig);
    if (firebaseUser) {
      // User is logged in, remove "hide" class
      document.querySelector("#login-page").classList.add("hide");
+     document.querySelector("#registration-page").classList.add("hide");
      document.querySelector('.chat-container').classList.remove('hide');
+     
      window.addEventListener('beforeunload', () => {
       // Log out the user when the window closes
       firebase.auth().signOut()
@@ -167,6 +173,7 @@ firebase.initializeApp(firebaseConfig);
         // Handle any errors during logout
         console.error(error);
       });
+      
     });
    } else {
     // User is not logged in, add "hide" class if needed
@@ -196,35 +203,35 @@ firebase.initializeApp(firebaseConfig);
      });
  };
 
-const messageHistory = document.querySelector('.message-history');
-const inputField = document.getElementById('chat-input-field');
-const sendButton = document.getElementById('send-button');
+// const messageHistory = document.querySelector('.message-history');
+// const inputField = document.getElementById('chat-input-field');
+// const sendButton = document.getElementById('send-button');
 
-sendButton.addEventListener('click', () => {
-  const userMessage = inputField.value;
+// sendButton.addEventListener('click', () => {
+//   const userMessage = inputField.value;
 
-  // Display user message
-  const userMessageElement = document.createElement('div');
-  userMessageElement.classList.add('message', 'user-message');
-  userMessageElement.innerText = `User: ${userMessage}`;
-  messageHistory.appendChild(userMessageElement);
+//   // Display user message
+//   const userMessageElement = document.createElement('div');
+//   userMessageElement.classList.add('message', 'user-message');
+//   userMessageElement.innerText = `User: ${userMessage}`;
+//   messageHistory.appendChild(userMessageElement);
 
-  // Clear input field
-  inputField.value = '';
+//   // Clear input field
+//   inputField.value = '';
 
-  // Generate computer response
-  const computerMessage = generateComputerResponse(userMessage);
+//   // Generate computer response
+//   const computerMessage = generateComputerResponse(userMessage);
 
-  // Display computer message
-  const computerMessageElement = document.createElement('div');
-  computerMessageElement.classList.add('message', 'computer-message');
-  computerMessageElement.innerText = `Computer: ${computerMessage}`;
-  messageHistory.appendChild(computerMessageElement);
-});
+//   // Display computer message
+//   const computerMessageElement = document.createElement('div');
+//   computerMessageElement.classList.add('message', 'computer-message');
+//   computerMessageElement.innerText = `Computer: ${computerMessage}`;
+//   messageHistory.appendChild(computerMessageElement);
+// });
 
 
-function generateComputerResponse(userMessage) {
-  // Replace this with your actual logic for generating computer responses
-  // This is just a simple example
-  return `Hello! I received your message: ${userMessage}`;
-}
+// function generateComputerResponse(userMessage) {
+//   // Replace this with your actual logic for generating computer responses
+//   // This is just a simple example
+//   return `Hello! I received your message: ${userMessage}`;
+// }
