@@ -25,18 +25,36 @@
    ```
 2. Install Dependencies:
    ```bash
-   yarn install
+   npm install
    ```
-3. Set up Firebase:
+3. Start the deployment server:
+   ```bash
+   npm start
+   ```
+4. Open http://localhost:3000 in your browser to access the website locally.
+   
+## Firebase Deployment (Optional)
+If you wish to deploy the website to Firebase, follow these steps:
+
+1. Set up Firebase:
    - Add your Firebase configuration in the firebase.json file.
    - Initialize the database with firebase init.
-4. Build the production version of the app:
+
+2. Build the production version of the app:
    ```bash
-   yarn build
+   npm run build
    ```
-5. Deploy the app to Firebase:
+3. Deploy the app to Firebase:
    ```bash
    firebase deploy
    ```
-6. Access your website at the provided Firebase Hosting URL.
+4. Access your website at the provided Firebase Hosting URL.
+
+## Usage
+- **Chatbot Interaction:** Start a conversation with the chatbot to get travel recommendations based on your preferences.
+- **Hotel Filtering:** Use the custom filters to refine hotel recommendations based on budget, location, and amenities.
+
+## Future Enhancements
+- Integration with third-party travel APIs for real-time booking.
+- Expanding the chatbot's functionality to include flight recommendations.
    
