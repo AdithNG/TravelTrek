@@ -22,21 +22,21 @@
    ```bash
    git clone https://github.com/AdithNG/TravelTrek.git
    cd TravelTrek
-  ```
+   ```
 2. Install Dependencies:
-  ```bash
-  yarn install
-  ```
+   ```bash
+   yarn install
+   ```
 3. Set up Firebase:
    -Add your Firebase configuration in the firebase.json file.
    -Initialize the database with firebase init.
 4. Build the production version of the app:
-  ```bash
-  yarn build
-  ```
+   ```bash
+   yarn build
+   ```
 5. Deploy the app to Firebase:
-  ```bash
-  firebase deploy
-  ```
+   ```bash
+   firebase deploy
+   ```
 6. Access your website at the provided Firebase Hosting URL.
    
