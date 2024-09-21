@@ -28,8 +28,8 @@
    yarn install
    ```
 3. Set up Firebase:
-   -Add your Firebase configuration in the firebase.json file.
-   -Initialize the database with firebase init.
+   - Add your Firebase configuration in the firebase.json file.
+   - Initialize the database with firebase init.
 4. Build the production version of the app:
    ```bash
    yarn build
