@@ -27,11 +27,15 @@
    ```bash
    npm install
    ```
-3. Start the deployment server:
+3. Build the production version of the app:
+   ```bash
+   npm run build
+   ```
+4. Start the deployment server:
    ```bash
    npm start
    ```
-4. Open http://localhost:3000 in your browser to access the website locally.
+5. Open http://localhost:3000 in your browser to access the website locally.
    
 ## Firebase Deployment (Optional)
 If you wish to deploy the website to Firebase, follow these steps:
