@@ -1,7 +1,7 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC9US9mLbq0KoY2XKB8sy8--CsfDlqRsw0",
-  authDomain: "traveltrek-53a65.firebaseapp.com",
+  authDomain: "traveltrek-53a65.web.app",
   databaseURL: "https://traveltrek-53a65-default-rtdb.firebaseio.com",
   projectId: "traveltrek-53a65",
   storageBucket: "traveltrek-53a65.appspot.com",
@@ -91,19 +91,18 @@ firebase.initializeApp(firebaseConfig);
      }
    });
 
- const login = () => {
-   const email = document.querySelector("#login-email").value;
-   const password = document.querySelector("#login-password").value;
-
-   if (email.trim() == "") {
-     alert("Enter Email");
-   } else if (password.trim() == "") {
-     alert("Enter Password");
-   } else {
-     authenticate(email, password);
-     window.location.href = 'http://127.0.0.1:5000/';
-   }
- };
+  const login = () => {
+    const email = document.querySelector("#login-email").value;
+    const password = document.querySelector("#login-password").value;
+  
+    if (email.trim() == "") {
+      alert("Enter Email");
+    } else if (password.trim() == "") {
+      alert("Enter Password");
+    } else {
+      authenticate(email, password);
+    }
+  };
 
  document.querySelector("#login").addEventListener("click", () => {
    login();
@@ -120,19 +119,21 @@ firebase.initializeApp(firebaseConfig);
      }
    });
 
- const authenticate = (email, password) => {
-   const auth = firebase.auth();
-   auth.signInWithEmailAndPassword(email, password);
-   firebase
-     .auth()
-     .signInWithEmailAndPassword(email, password)
-     .catch(function (error) {
-       // Handle Errors here.
-       var errorCode = error.code;
-       var errorMessage = error.message;
-       alert("Username or Password Incorrect. Please try again later.");
-     });
- };
+   const authenticate = (email, password) => {
+    const auth = firebase.auth();
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        // Redirect to chatbot page after successful login
+        window.location.href = 'chatbot.html';  // Redirect to the chatbot page
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert("Username or Password Incorrect. Please try again later.");
+      });
+
+  };
 
  const showHomepage = () => {
    document.querySelector("#registration-page").classList.add("hide");
@@ -155,31 +156,15 @@ firebase.initializeApp(firebaseConfig);
  };
 
  auth.onAuthStateChanged((firebaseUser) => {
-   if (firebaseUser) {
-     // User is logged in, remove "hide" class
-     document.querySelector("#login-page").classList.add("hide");
-     document.querySelector("#registration-page").classList.add("hide");
-     document.querySelector('.chat-container').classList.remove('hide');
-     
-     window.addEventListener('beforeunload', () => {
-      // Log out the user when the window closes
-      firebase.auth().signOut()
-      .then(() => {
-        // Clear any local storage or cookies related to user authentication
-        localStorage.clear();
-        cookies.remove('user_token');
-      })
-      .catch((error) => {
-        // Handle any errors during logout
-        console.error(error);
-      });
-      
-    });
-   } else {
-    // User is not logged in, add "hide" class if needed
-    document.querySelector('.chat-container').classList.add('hide');
+  if (firebaseUser) {
+    // If user is logged in, redirect to chatbot page
+    console.log('User is already logged in, redirecting to chatbot.html');
+    window.location.href = 'chatbot.html';
+  } else {
+    // If user is not logged in, stay on the current page
+    console.log('User not logged in');
   }
- });
+});
 
  document
    .querySelector("#forgot-password")
@@ -203,35 +188,35 @@ firebase.initializeApp(firebaseConfig);
      });
  };
 
-// const messageHistory = document.querySelector('.message-history');
-// const inputField = document.getElementById('chat-input-field');
-// const sendButton = document.getElementById('send-button');
+const messageHistory = document.querySelector('.message-history');
+const inputField = document.getElementById('chat-input-field');
+const sendButton = document.getElementById('send-button');
 
-// sendButton.addEventListener('click', () => {
-//   const userMessage = inputField.value;
+sendButton.addEventListener('click', () => {
+  const userMessage = inputField.value;
 
-//   // Display user message
-//   const userMessageElement = document.createElement('div');
-//   userMessageElement.classList.add('message', 'user-message');
-//   userMessageElement.innerText = `User: ${userMessage}`;
-//   messageHistory.appendChild(userMessageElement);
+  // Display user message
+  const userMessageElement = document.createElement('div');
+  userMessageElement.classList.add('message', 'user-message');
+  userMessageElement.innerText = `User: ${userMessage}`;
+  messageHistory.appendChild(userMessageElement);
 
-//   // Clear input field
-//   inputField.value = '';
+  // Clear input field
+  inputField.value = '';
 
-//   // Generate computer response
-//   const computerMessage = generateComputerResponse(userMessage);
+  // Generate computer response
+  const computerMessage = generateComputerResponse(userMessage);
 
-//   // Display computer message
-//   const computerMessageElement = document.createElement('div');
-//   computerMessageElement.classList.add('message', 'computer-message');
-//   computerMessageElement.innerText = `Computer: ${computerMessage}`;
-//   messageHistory.appendChild(computerMessageElement);
-// });
+  // Display computer message
+  const computerMessageElement = document.createElement('div');
+  computerMessageElement.classList.add('message', 'computer-message');
+  computerMessageElement.innerText = `Computer: ${computerMessage}`;
+  messageHistory.appendChild(computerMessageElement);
+});
 
 
-// function generateComputerResponse(userMessage) {
-//   // Replace this with your actual logic for generating computer responses
-//   // This is just a simple example
-//   return `Hello! I received your message: ${userMessage}`;
-// }
+function generateComputerResponse(userMessage) {
+  // Replace this with your actual logic for generating computer responses
+  // This is just a simple example
+  return `Hello! I received your message: ${userMessage}`;
+}
