@@ -1,6 +1,6 @@
 # TravelTrek – AI-Powered Travel Recommender
 
-**TravelTrek** is a web-based application that recommends travel locations and hotels based on user preferences and budget. This project was developed as part of the CMSC 447 Software Engineering course, integrating OpenAI's GPT API to provide personalized travel suggestions through an interactive chatbot.
+**TravelTrek** is a web-based application that recommends travel locations and hotels based on user preferences and budget. This project was developed to integrate OpenAI's GPT API to provide personalized travel suggestions through an interactive chatbot.
 
 ## Features
 - **AI Chatbot**: The website integrates with GPT to offer personalized travel and hotel recommendations based on user inputs such as budget and preferred destinations.
